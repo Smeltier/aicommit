@@ -1,6 +1,6 @@
 {
     "name": "@smeltier/aicommit",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "AI-powered conventional commit message generator",
     "main": "dist/index.js",
     "bin": {
@@ -11,9 +11,19 @@
         "dev": "ts-node src/index.ts",
         "prepare": "npm run build"
     },
-    "keywords": ["git", "commit", "ai", "conventional-commits", "cli"],
+    "keywords": [
+        "git",
+        "commit",
+        "ai",
+        "conventional-commits",
+        "cli"
+    ],
     "license": "MIT",
-    "files": ["dist/", "README.md", "LICENSE"],
+    "files": [
+        "dist/",
+        "README.md",
+        "LICENSE"
+    ],
     "dependencies": {
         "node-fetch": "^3.3.2"
     },
