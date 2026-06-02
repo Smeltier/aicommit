@@ -13,6 +13,7 @@
     },
     "keywords": ["git", "commit", "ai", "conventional-commits", "cli"],
     "license": "MIT",
+    "files": ["dist/", "README.md", "LICENSE"],
     "dependencies": {
         "node-fetch": "^3.3.2"
     },
