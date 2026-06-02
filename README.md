@@ -5,7 +5,7 @@ AI-powered conventional commit message generator. Analyzes your staged changes a
 ## Installation
 
 ```bash
-npm install -g aicommit
+npm install -g @smeltier/aicommit
 ```
 
 ## Setup
