@@ -1,5 +1,5 @@
 {
-    "name": "aicommit",
+    "name": "@smeltier/aicommit",
     "version": "0.1.0",
     "description": "AI-powered conventional commit message generator",
     "main": "dist/index.js",
