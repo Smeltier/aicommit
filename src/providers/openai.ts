@@ -21,6 +21,12 @@ export async function generate(diff: string, config: Config): Promise<string> {
     }
 
     const data = await response.json() as { choices: { message: { content: string } }[] };
-    return data.choices[0].message.content.trim();
+    const text = data.choices?.[0]?.message?.content;
+
+    if (!text) {
+        throw new Error("OpenAI API returned an unexpected response format.");
+    }
+
+    return text.trim();
 }
 

@@ -18,6 +18,11 @@ export async function generate(diff: string, config: Config): Promise<string> {
     }
 
     const data = await response.json() as { response: string };
+
+    if (!data.response) {
+        throw new Error("Ollama API returned an unexpected response format.");
+    }
+
     return data.response.trim();
 }
 

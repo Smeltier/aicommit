@@ -21,7 +21,13 @@ export async function generate(diff: string, config: Config): Promise<string> {
         throw new Error(`Anthropic API error: ${error}`);
     }
 
-    const data = await response.json() as { content: { type: string; text: string }[] }
-    return data.content[0].text.trim();
+    const data = await response.json() as { content: { type: string; text: string }[] };
+    const text = data.content?.[0]?.text;
+
+    if (!text) {
+        throw new Error("Anthropic API returned an unexpected response format.");
+    }
+
+    return text.trim();
 }
 
