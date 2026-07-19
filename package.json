@@ -10,7 +10,8 @@
         "build": "tsc",
         "dev": "ts-node src/index.ts",
         "prepare": "npm run build",
-        "test": "vitest"
+        "test": "vitest",
+        "test:ci": "vitest run"
     },
     "keywords": [
         "git",
@@ -25,9 +26,6 @@
         "README.md",
         "LICENSE"
     ],
-    "dependencies": {
-        "node-fetch": "^3.3.2"
-    },
     "devDependencies": {
         "@types/node": "^22.0.0",
         "ts-node": "^10.9.2",
