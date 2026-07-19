@@ -32,7 +32,8 @@ async function confirm(message: string): Promise<boolean> {
     return new Promise((resolve) => {
         rl.question(`\nCommit message: ${message}\n\nConfirm? (Y/n) `, (answer) => {
             rl.close();
-            resolve(answer.toLowerCase() !== "n");
+            const normalized = answer.trim().toLowerCase();
+            resolve(normalized === "" || normalized === "y" || normalized === "yes");
         });
     });
 }
@@ -59,6 +60,6 @@ async function main() {
 }
 
 main().catch((err) => {
-    console.error(err.message);
+    console.error(err.message),
     process.exit(1);
 });
