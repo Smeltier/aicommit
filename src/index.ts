@@ -7,7 +7,7 @@ import { generate as anthropicGenerate } from "./providers/anthropic";
 import { generate as openaiGenerate } from "./providers/openai";
 import { generate as ollamaGenerate } from "./providers/ollama";
 
-async function getStagedDiff(): Promise<string> {
+export async function getStagedDiff(): Promise<string> {
     try {
         const diff = execSync("git diff --staged", { encoding: "utf-8" });
         return diff.trim();
@@ -17,7 +17,7 @@ async function getStagedDiff(): Promise<string> {
     }
 }
 
-async function generateMessage(diff: string): Promise<string> {
+export async function generateMessage(diff: string): Promise<string> {
     const config = loadConfig();
 
     switch (config.provider) {
@@ -27,7 +27,7 @@ async function generateMessage(diff: string): Promise<string> {
     }
 }
 
-async function confirm(message: string): Promise<boolean> {
+export async function confirm(message: string): Promise<boolean> {
     const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
     return new Promise((resolve) => {
         rl.question(`\nCommit message: ${message}\n\nConfirm? (Y/n) `, (answer) => {
@@ -59,7 +59,11 @@ async function main() {
     execSync(`git commit -m "${message.replace(/"/g, '\\"')}"`, { stdio: "inherit" });
 }
 
-main().catch((err) => {
-    console.error(err.message),
-    process.exit(1);
-});
+const isMain = require.main === module;
+
+if (isMain) {
+    main().catch((err) => {
+        console.error(err.message);
+        process.exit(1);
+    });
+}
