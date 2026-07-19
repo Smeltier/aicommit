@@ -12,7 +12,7 @@ vi.mock("readline", () => ({
 }));
 
 describe("confirm", () => {
-    it("returns true when user response is 'y'", async () => {
+    it("returns true when the user answers 'y'", async () => {
         const result = await confirm("feat: something");
         expect(result).toBe(true);
     });
