@@ -1,4 +1,5 @@
 import { Config } from "../config";
+import { buildPrompt } from "../prompt";
 
 export async function generate(diff: string, config: Config): Promise<string> {
     const response = await fetch("https://api.anthropic.com/v1/messages", {
@@ -24,18 +25,3 @@ export async function generate(diff: string, config: Config): Promise<string> {
     return data.content[0].text.trim();
 }
 
-function buildPrompt(diff: string, lang: string): string {
-    return `Generate a conventional commit message for the following git diff.
-
-            Rules:
-                - Format: <type>(<optional scope>): <short description>
-                - Types: feat, fix, docs, style, refactor, test, chore
-                - Description must be in ${lang}
-                - Max 72 characters
-                - No emoji
-                - No period at the end
-                - Reply with ONLY the commit message, nothing else
-
-            Git diff:
-                ${diff}`;
-}
